@@ -1,0 +1,26 @@
+_format_version: "2.1"
+_transform: true
+
+services:
+- name: bin-service
+  url: https://httpbin.org/
+  routes:
+  - name: bin-route
+    paths:
+    - /bin
+- name: bun-service
+  url: https://httpbin.org/
+  routes:
+  - name: bun-route
+    paths:
+    - /bun
+- name: ban-service
+  url: https://httpbin.org/
+  routes:
+  - name: ban-route
+    paths:
+    - /ban
+
+plugins:
+- name: prometheus
+

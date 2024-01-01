@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: scrape_kong_prometheus_metrics
+    static_configs:
+      - targets:
+        - mock-kong-gateways:8001
+
+rule_files:
+  - 'prometheus_rules.yml'

@@ -1,0 +1,45 @@
+groups:
+  - name: kong_bandwidth
+    rules:
+    - alert: egress_kong_bandwidth_quota_100_percent_exceeded
+      expr: kong_bandwidth{type="egress"} > 50000
+      for: 5s
+      labels:
+        severity: page
+      annotations:
+        summary: Egress bandwidth exceeded 50000 for service={{ $labels.service }} route={{ $labels.route }}!
+    - alert: egress_kong_bandwidth_quota_90_percent_exceeded
+      expr: kong_bandwidth{type="egress"} > (50000 * 0.9)
+      for: 5s
+      labels:
+        severity: page
+      annotations:
+        summary: Egress bandwidth exceeded 90% of 50000 for service={{ $labels.service }} route={{ $labels.route }}!
+    - alert: egress_kong_bandwidth_quota_80_percent_exceeded
+      expr: kong_bandwidth{type="egress"} > (50000 * 0.8)
+      for: 5s
+      labels:
+        severity: page
+      annotations:
+        summary: Egress bandwidth exceeded 80% of 50000 for service={{ $labels.service }} route={{ $labels.route }}!
+    - alert: ingress_kong_bandwidth_quota_100_percent_exceeded
+      expr: kong_bandwidth{type="ingress"} > 5000
+      for: 5s
+      labels:
+        severity: page
+      annotations:
+        summary: Ingress bandwidth exceeded 5000 for service={{ $labels.service }} route={{ $labels.route }}!
+    - alert: ingress_kong_bandwidth_quota_100_percent_exceeded
+      expr: kong_bandwidth{type="ingress"} > (5000 * 0.9)
+      for: 5s
+      labels:
+        severity: page
+      annotations:
+        summary: Ingress bandwidth exceeded 90% of 5000 for service={{ $labels.service }} route={{ $labels.route }}!
+    - alert: ingress_kong_bandwidth_quota_80_percent_exceeded
+      expr: kong_bandwidth{type="ingress"} > (5000 * 0.8)
+      for: 5s
+      labels:
+        severity: page
+      annotations:
+        summary: Ingress bandwidth exceeded 80% of 5000 for service={{ $labels.service }} route={{ $labels.route }}!
